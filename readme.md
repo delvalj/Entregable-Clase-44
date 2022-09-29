@@ -1,13 +1,14 @@
 # Entreable Clase 44 || GraphQL
 
-### En base al último proyecto entregable de servidor API RESTful, reformar la capa de routeo y el controlador para que los requests puedan ser realizados a través del lenguaje de query GraphQL. 
-### Si tuviésemos un frontend, reformarlo para soportar GraphQL y poder dialogar apropiadamente con el backend y así realizar las distintas operaciones de pedir, guardar, actualizar y borrar recursos.
-### Utilizar GraphiQL para realizar la prueba funcional de los querys y las mutaciones.
+#### En base al último proyecto entregable de servidor API RESTful, reformar la capa de routeo y el controlador para que los requests puedan ser realizados a través del lenguaje de query GraphQL. 
+#### Si tuviésemos un frontend, reformarlo para soportar GraphQL y poder dialogar apropiadamente con el backend y así realizar las distintas operaciones de pedir, guardar, actualizar y borrar recursos.
+#### Utilizar GraphiQL para realizar la prueba funcional de los querys y las mutaciones.
 
 <br>
 
-# Comandos para Graphql
-```
+# Comandos para Graphql Products 
+# localhost:8080/graphql
+``` 
  query {
   getProducts {
          title
@@ -41,6 +42,20 @@ mutation{
     title
   }
 }
+
+
+```
+# Comandos para Graphql Users
+# localhost:8080/graphqlUser
+
+```
+query {
+	getUsers{
+    _id,
+    username
+  }
+}
+
 
 ```
 

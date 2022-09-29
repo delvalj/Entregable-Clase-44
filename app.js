@@ -23,11 +23,20 @@ const { DB_URI, SECRET } = process.env;
 const { graphqlHTTP } = require("express-graphql");
 const { buildSchema } = require("graphql");
 
-const { getProducts, getProductById, addProduct, deleteOneProduct} = require("./resolvers/productResolver");
+const {
+  getProducts,
+  getProductById,
+  addProduct,
+  deleteOneProduct,
+} = require("./resolvers/productResolver");
+
+const {getUsers, getOneUser, createUser} = require("./resolvers/usersResolver")
 
 const fs = require("fs");
 const shcemaString = fs.readFileSync("./schemas/products.gql").toString();
+const shcemaStringUsers = fs.readFileSync("./schemas/users.gql").toString();
 const schemaCompilado = buildSchema(shcemaString);
+const schemaCompiladoUsers = buildSchema(shcemaStringUsers);
 
 const graphMiddleware = graphqlHTTP({
   schema: schemaCompilado,
@@ -35,12 +44,24 @@ const graphMiddleware = graphqlHTTP({
     getProducts: getProducts,
     getProductById: getProductById,
     addProduct: addProduct,
-    deleteOneProduct: deleteOneProduct
+    deleteOneProduct: deleteOneProduct,
+  },
+  graphiql: true,
+});
+
+const graphMiddlewareUsers = graphqlHTTP({
+  schema: schemaCompiladoUsers,
+  rootValue: {
+    getUsers: getUsers,
+    getOneUser: getOneUser,
+    createUser: createUser
+    
   },
   graphiql: true,
 });
 
 app.use("/graphql", graphMiddleware);
+app.use("/graphqlUser", graphMiddlewareUsers);
 
 // Views Engine
 app.engine(

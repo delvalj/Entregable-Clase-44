@@ -9,6 +9,7 @@ type Product {
 
 type Query {
   getProducts: [Product]
+  
   getProductById(_id: ID): [Product]
 }
 
