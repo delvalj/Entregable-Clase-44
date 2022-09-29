@@ -56,6 +56,15 @@ query {
   }
 }
 
+mutation{
+  createUser(username: "Joaquin del Val", password:"123456",
+    email:"j@a.com", address:"123 Av. Siempreviva", age: 27,
+    phone:153) {
+    username
+  }
+}
+
+
 
 ```
 
